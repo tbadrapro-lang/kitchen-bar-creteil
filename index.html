@@ -374,55 +374,65 @@
       font-style: italic;
       clear: both;
     }
-    <div class="gallery-item" data-img="1/8">
-  <img src="1.png" alt="Plat signature" onerror="this.style.display='none'">
-</div>
-<div class="gallery-item" data-img="2/8">
-  <img src="2.png" alt="Cocktail d'exception" onerror="this.style.display='none'">
-</div>
-...
-   <!-- GALERIE PHOTOS (IMAGES 1 À 8) -->
-<section id="galerie" class="gallery">
-  <div class="container">
-    <h2 class="section-title" data-aos="fade-up">Galerie Gourmande</h2>
-    <p style="text-align:center; margin-bottom:50px; opacity:0.8;" data-aos="fade-up">
-      <i class="fas fa-camera"></i> Découvrez l'ambiance et nos créations
-    </p>
     
-    <div class="gallery-grid" data-aos="fade-up" data-aos-delay="200">
-      <!-- Les images sont à la racine, au format .png -->
-      <div class="gallery-item" data-img="1/8">
-        <img src="1.png" alt="Plat signature" onerror="this.style.display='none'">
-      </div>
-      <div class="gallery-item" data-img="2/8">
-        <img src="2.png" alt="Cocktail d'exception" onerror="this.style.display='none'">
-      </div>
-      <div class="gallery-item" data-img="3/8">
-        <img src="3.png" alt="Salle du restaurant" onerror="this.style.display='none'">
-      </div>
-      <div class="gallery-item" data-img="4/8">
-        <img src="4.png" alt="Terrasse lounge" onerror="this.style.display='none'">
-      </div>
-      <div class="gallery-item" data-img="5/8">
-        <img src="5.png" alt="Dessert gourmand" onerror="this.style.display='none'">
-      </div>
-      <div class="gallery-item" data-img="6/8">
-        <img src="unnamed.png" alt="Service gastronomique" onerror="this.style.display='none'">
-      </div>
-      <!-- Ajoutez deux autres images si vous les avez (6.png, 7.png) sinon dupliquez les existantes -->
-      <div class="gallery-item" data-img="7/8">
-        <img src="unnamed.png" alt="Planche à partager" onerror="this.style.display='none'">
-      </div>
-      <div class="gallery-item" data-img="8/8">
-        <img src="unnamed.png" alt="Vue du bar" onerror="this.style.display='none'">
-      </div>
-    </div>
+    /* ===== GALERIE PHOTOS ===== */
+    .gallery {
+      background: linear-gradient(145deg, #0f0f0f 0%, #151515 100%);
+    }
     
-    <p style="text-align:center; margin-top:40px; font-size:0.9rem; opacity:0.6;" data-aos="fade-up">
-      * Photos réelles du restaurant
-    </p>
-  </div>
-</section>
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    
+    .gallery-item {
+      aspect-ratio: 1 / 1;
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      border: 1px solid rgba(212,175,55,0.2);
+      transition: var(--transition);
+      cursor: pointer;
+      background: linear-gradient(145deg, #1e1e1e, #2a2a2a);
+    }
+    
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    
+    .gallery-item::after {
+      content: attr(data-img);
+      position: absolute;
+      bottom: 15px;
+      right: 20px;
+      color: var(--gold);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+      z-index: 2;
+      opacity: 0.8;
+      transition: var(--transition);
+    }
+    
+    .gallery-item:hover {
+      border-color: var(--gold);
+      box-shadow: var(--shadow-gold);
+      transform: scale(1.02);
+    }
+    
+    .gallery-item:hover img {
+      transform: scale(1.08);
+    }
+    
+    .gallery-item:hover::after {
+      opacity: 1;
+      transform: translateY(-3px);
     }
     
     /* ===== INFOS PRATIQUES ===== */
@@ -742,7 +752,7 @@
   </div>
 </section>
 
-<!-- GALERIE PHOTOS (IMAGES 1 À 8) -->
+<!-- GALERIE PHOTOS (IMAGES 1.png à 8.png) -->
 <section id="galerie" class="gallery">
   <div class="container">
     <h2 class="section-title" data-aos="fade-up">Galerie Gourmande</h2>
@@ -750,36 +760,37 @@
       <i class="fas fa-camera"></i> Découvrez l'ambiance et nos créations
     </p>
     
-    <!-- Grille de 8 images. Placez vos photos dans le dossier "images" avec les noms 1.jpg, 2.jpg ... 8.jpg -->
     <div class="gallery-grid" data-aos="fade-up" data-aos-delay="200">
+      <!-- Adaptez les noms de fichiers selon ceux présents dans votre dépôt -->
       <div class="gallery-item" data-img="1/8">
-        <img src="images/1.jpg" alt="Plat signature" onerror="this.style.display='none'">
+        <img src="1.png" alt="Plat signature" onerror="this.style.display='none'">
       </div>
       <div class="gallery-item" data-img="2/8">
-        <img src="images/2.jpg" alt="Cocktail d'exception" onerror="this.style.display='none'">
+        <img src="2.png" alt="Cocktail d'exception" onerror="this.style.display='none'">
       </div>
       <div class="gallery-item" data-img="3/8">
-        <img src="images/3.jpg" alt="Salle du restaurant" onerror="this.style.display='none'">
+        <img src="3.png" alt="Salle du restaurant" onerror="this.style.display='none'">
       </div>
       <div class="gallery-item" data-img="4/8">
-        <img src="images/4.jpg" alt="Terrasse lounge" onerror="this.style.display='none'">
+        <img src="4.png" alt="Terrasse lounge" onerror="this.style.display='none'">
       </div>
       <div class="gallery-item" data-img="5/8">
-        <img src="images/5.jpg" alt="Dessert gourmand" onerror="this.style.display='none'">
+        <img src="5.png" alt="Dessert gourmand" onerror="this.style.display='none'">
       </div>
       <div class="gallery-item" data-img="6/8">
-        <img src="images/6.jpg" alt="Service gastronomique" onerror="this.style.display='none'">
+        <img src="unnamed.png" alt="Service gastronomique" onerror="this.style.display='none'">
       </div>
+      <!-- Pour avoir 8 images, vous pouvez dupliquer les existantes ou ajouter 6.png, 7.png -->
       <div class="gallery-item" data-img="7/8">
-        <img src="images/7.jpg" alt="Planche à partager" onerror="this.style.display='none'">
+        <img src="unnamed.png" alt="Planche à partager" onerror="this.style.display='none'">
       </div>
       <div class="gallery-item" data-img="8/8">
-        <img src="images/8.jpg" alt="Vue du bar" onerror="this.style.display='none'">
+        <img src="unnamed.png" alt="Vue du bar" onerror="this.style.display='none'">
       </div>
     </div>
     
     <p style="text-align:center; margin-top:40px; font-size:0.9rem; opacity:0.6;" data-aos="fade-up">
-      * Placez vos propres photos dans le dossier "images" (1.jpg à 8.jpg)
+      * Photos réelles du restaurant
     </p>
   </div>
 </section>
