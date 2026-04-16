@@ -375,74 +375,48 @@
       clear: both;
     }
     
-    /* ===== GALERIE PHOTOS (IMAGES RÉELLES) ===== */
-    .gallery {
-      background: linear-gradient(145deg, #0f0f0f 0%, #151515 100%);
-    }
+   <!-- GALERIE PHOTOS (IMAGES 1 À 8) -->
+<section id="galerie" class="gallery">
+  <div class="container">
+    <h2 class="section-title" data-aos="fade-up">Galerie Gourmande</h2>
+    <p style="text-align:center; margin-bottom:50px; opacity:0.8;" data-aos="fade-up">
+      <i class="fas fa-camera"></i> Découvrez l'ambiance et nos créations
+    </p>
     
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-    }
+    <div class="gallery-grid" data-aos="fade-up" data-aos-delay="200">
+      <!-- Les images sont à la racine, au format .png -->
+      <div class="gallery-item" data-img="1/8">
+        <img src="1.png" alt="Plat signature" onerror="this.style.display='none'">
+      </div>
+      <div class="gallery-item" data-img="2/8">
+        <img src="2.png" alt="Cocktail d'exception" onerror="this.style.display='none'">
+      </div>
+      <div class="gallery-item" data-img="3/8">
+        <img src="3.png" alt="Salle du restaurant" onerror="this.style.display='none'">
+      </div>
+      <div class="gallery-item" data-img="4/8">
+        <img src="4.png" alt="Terrasse lounge" onerror="this.style.display='none'">
+      </div>
+      <div class="gallery-item" data-img="5/8">
+        <img src="5.png" alt="Dessert gourmand" onerror="this.style.display='none'">
+      </div>
+      <div class="gallery-item" data-img="6/8">
+        <img src="unnamed.png" alt="Service gastronomique" onerror="this.style.display='none'">
+      </div>
+      <!-- Ajoutez deux autres images si vous les avez (6.png, 7.png) sinon dupliquez les existantes -->
+      <div class="gallery-item" data-img="7/8">
+        <img src="unnamed.png" alt="Planche à partager" onerror="this.style.display='none'">
+      </div>
+      <div class="gallery-item" data-img="8/8">
+        <img src="unnamed.png" alt="Vue du bar" onerror="this.style.display='none'">
+      </div>
+    </div>
     
-    .gallery-item {
-      aspect-ratio: 1 / 1;
-      border-radius: 20px;
-      overflow: hidden;
-      position: relative;
-      border: 1px solid rgba(212,175,55,0.2);
-      transition: var(--transition);
-      cursor: pointer;
-      background: var(--charcoal);
-    }
-    
-    .gallery-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
-    
-    /* Placeholder stylé si l'image ne charge pas */
-    .gallery-item {
-      background: linear-gradient(145deg, #1e1e1e, #2a2a2a);
-    }
-    
-    .gallery-item img[src=""] {
-      display: none;
-    }
-    
-    /* Fallback avec numéro d'image */
-    .gallery-item::after {
-      content: attr(data-img);
-      position: absolute;
-      bottom: 15px;
-      right: 20px;
-      color: var(--gold);
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.2rem;
-      font-weight: 600;
-      text-shadow: 0 2px 5px rgba(0,0,0,0.5);
-      z-index: 2;
-      opacity: 0.8;
-      transition: var(--transition);
-    }
-    
-    .gallery-item:hover {
-      border-color: var(--gold);
-      box-shadow: var(--shadow-gold);
-      transform: scale(1.02);
-    }
-    
-    .gallery-item:hover img {
-      transform: scale(1.08);
-    }
-    
-    .gallery-item:hover::after {
-      opacity: 1;
-      transform: translateY(-3px);
+    <p style="text-align:center; margin-top:40px; font-size:0.9rem; opacity:0.6;" data-aos="fade-up">
+      * Photos réelles du restaurant
+    </p>
+  </div>
+</section>
     }
     
     /* ===== INFOS PRATIQUES ===== */
