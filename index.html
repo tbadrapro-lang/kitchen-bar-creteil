@@ -1,198 +1,173 @@
-grillé au levain.</p>
-                    <div class="item-price">11€</div>
-                    <div class="allergens">Poisson, Lait, Gluten</div>
-                    <button class="btn-order" onclick="addToCart('Rillette de Saumon', 11)" style="margin-top:15px">Ajouter à la sélection</button>
-                </div>
-            </div>
-        </div>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KITCHEN & BAR | Courtyard by Marriott Paris Créteil</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --gold: #D4AF37; --dark: #0A0A0A; --charcoal: #1A1A1A; --cream: #F8F4E6;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            background: var(--dark); color: var(--cream); 
+            line-height: 1.6;
+        }
+        h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; }
 
-        <div class="menu-category" data-aos="fade-up">
-            <div class="category-header">
-                <div class="category-icon"><i class="fas fa-hamburger"></i></div>
-                <h3 class="category-title">Incontournables Gourmet</h3>
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        /* Header */
+        header {
+            background: rgba(10,10,10,0.95);
+            padding: 20px 0;
+            position: fixed; width: 100%; top: 0; z-index: 1000;
+            border-bottom: 1px solid rgba(212,175,55,0.3);
+        }
+        nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo { color: var(--gold); font-size: 1.5rem; text-decoration: none; font-weight: bold; letter-spacing: 2px; }
+
+        /* Hero */
+        .hero {
+            height: 80vh;
+            display: flex; align-items: center; justify-content: center;
+            text-align: center; background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover; margin-top: 60px;
+        }
+        .hero h1 { font-size: 4rem; color: var(--gold); margin-bottom: 10px; }
+
+        /* Menu Grid */
+        section { padding: 80px 0; }
+        .section-title { font-size: 3rem; text-align: center; margin-bottom: 50px; color: var(--gold); }
+        .menu-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px;
+        }
+        .menu-item {
+            background: var(--charcoal); padding: 30px; border-radius: 8px;
+            border: 1px solid rgba(212,175,55,0.1); transition: 0.3s;
+        }
+        .menu-item:hover { border-color: var(--gold); transform: translateY(-5px); }
+        .item-header { display: flex; justify-content: space-between; margin-bottom: 10px; }
+        .item-name { font-size: 1.4rem; color: var(--gold); }
+        .item-price { font-weight: bold; }
+        .item-desc { font-size: 0.9rem; opacity: 0.8; margin-bottom: 15px; }
+
+        /* Buttons */
+        .btn-order {
+            background: transparent; border: 1px solid var(--gold); color: var(--gold);
+            padding: 10px 20px; cursor: pointer; transition: 0.3s; width: 100%;
+        }
+        .btn-order:hover { background: var(--gold); color: var(--dark); }
+
+        /* Sidebar Cart */
+        #cart-sidebar {
+            position: fixed; right: -400px; top: 0; width: 350px; height: 100vh;
+            background: var(--charcoal); z-index: 2000; padding: 40px;
+            transition: 0.5s; border-left: 2px solid var(--gold);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">KITCHEN & BAR</a>
+                <div style="color:var(--gold); cursor:pointer;" onclick="toggleCart()">
+                    <i class="fas fa-shopping-bag"></i> (<span id="cart-count">0</span>)
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container" data-aos="fade-up">
+            <h1>L'Art de Recevoir</h1>
+            <p>Courtyard by Marriott Paris Créteil</p>
+        </div>
+    </section>
+
+    <section id="menu" class="container">
+        <h2 class="section-title">La Carte</h2>
+        
+        <div class="menu-grid">
+            <div class="menu-item" data-aos="fade-up">
+                <div class="item-header">
+                    <h4 class="item-name">Rillette de Saumon</h4>
+                    <span class="item-price">11€</span>
+                </div>
+                <p class="item-desc">Saumon fumé concassé, crème d'Isigny et pain grillé au levain.</p>
+                <button class="btn-order" onclick="addToCart('Rillette de Saumon', 11)">Ajouter à la sélection</button>
             </div>
-            <div class="menu-grid">
-                <div class="menu-item">
+
+            <div class="menu-item" data-aos="fade-up" data-aos-delay="100">
+                <div class="item-header">
                     <h4 class="item-name">K&B Burger Signature</h4>
-                    <p class="item-desc">Bœuf premium, cheddar affiné, oignons rouges, sauce barbecue maison. Servi avec frites fraîches.</p>
-                    <div class="item-price">21€</div>
-                    <button class="btn-order" onclick="addToCart('K&B Burger', 21)" style="margin-top:15px">Ajouter à la sélection</button>
+                    <span class="item-price">21€</span>
                 </div>
-                <div class="menu-item">
-                    <h4 class="item-name">Caesar Bowl de Poulet</h4>
-                    <p class="item-desc">Salade romaine, suprême de poulet rôti, copeaux de Grana Padano, croûtons à l'ail et sauce onctueuse.</p>
-                    <div class="item-price">18€</div>
-                    <button class="btn-order" onclick="addToCart('Caesar Bowl', 18)" style="margin-top:15px">Ajouter à la sélection</button>
-                </div>
+                <p class="item-desc">Bœuf premium, cheddar affiné, sauce barbecue maison. Servi avec frites fraîches.</p>
+                <button class="btn-order" onclick="addToCart('K&B Burger', 21)">Ajouter à la sélection</button>
             </div>
-        </div>
 
-        <div class="menu-category" data-aos="fade-up">
-            <div class="category-header">
-                <div class="category-icon"><i class="fas fa-utensils"></i></div>
-                <h3 class="category-title">Les Grandes Assiettes</h3>
-            </div>
-            <div class="menu-grid">
-                <div class="menu-item">
-                    <h4 class="item-name">Pièce du Boucher Glacée</h4>
-                    <p class="item-desc">Viande sélectionnée, jus de viande réduit au thym, pommes grenailles rôties au sel de Guérande.</p>
-                    <div class="item-price">24€</div>
-                    <button class="btn-order" onclick="addToCart('Pièce du Boucher', 24)" style="margin-top:15px">Ajouter à la sélection</button>
+            <div class="menu-item" data-aos="fade-up" data-aos-delay="200">
+                <div class="item-header">
+                    <h4 class="item-name">Poisson du Marché</h4>
+                    <span class="item-price">21€</span>
                 </div>
-                <div class="menu-item">
-                    <h4 class="item-name">Poisson du Marché & Écume</h4>
-                    <p class="item-desc">Pêche du jour selon arrivage, émulsion au citron vert, petits légumes de saison glacés.</p>
-                    <div class="item-price">21€</div>
-                    <button class="btn-order" onclick="addToCart('Poisson du Marché', 21)" style="margin-top:15px">Ajouter à la sélection</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="menu-category" data-aos="fade-up">
-            <div class="category-header">
-                <div class="category-icon"><i class="fas fa-ice-cream"></i></div>
-                <h3 class="category-title">Notes Sucrées</h3>
-            </div>
-            <div class="menu-grid">
-                <div class="menu-item">
-                    <h4 class="item-name">Fondant Chocolat Noir</h4>
-                    <p class="item-desc">Cœur coulant 70% de cacao, crème anglaise infusée à la vanille de Bourbon.</p>
-                    <div class="item-price">9€</div>
-                    <button class="btn-order" onclick="addToCart('Fondant Chocolat', 9)" style="margin-top:15px">Ajouter à la sélection</button>
-                </div>
-                <div class="menu-item">
-                    <h4 class="item-name">Tartelette aux Fruits de Saison</h4>
-                    <p class="item-desc">Pâte sablée craquante, crème diplomate et fruits frais sélectionnés par le chef.</p>
-                    <div class="item-price">9€</div>
-                    <button class="btn-order" onclick="addToCart('Tartelette Fruits', 9)" style="margin-top:15px">Ajouter à la sélection</button>
-                </div>
+                <p class="item-desc">Pêche du jour, émulsion au citron vert, petits légumes de saison glacés.</p>
+                <button class="btn-order" onclick="addToCart('Poisson du Marché', 21)">Ajouter à la sélection</button>
             </div>
         </div>
     </section>
 
-    <section id="info" class="reviews-section">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up">L'Expérience Marriott</h2>
-            <div class="info-grid">
-                <div class="info-card" data-aos="zoom-in">
-                    <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
-                    <h4>Adresse Prestige</h4>
-                    <p>2 Rue Daniel Costantini<br>94000 Créteil, France</p>
-                </div>
-                <div class="info-card" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="info-icon"><i class="fas fa-clock"></i></div>
-                    <h4>Heures de Service</h4>
-                    <p>Lundi - Dimanche<br>12:00 - 14:30 | 19:00 - 22:30</p>
-                </div>
-                <div class="info-card" data-aos="zoom-in" data-aos-delay="400">
-                    <div class="info-icon"><i class="fas fa-phone-alt"></i></div>
-                    <h4>Conciergerie</h4>
-                    <p>01 88 60 20 00<br>Réservation conseillée</p>
-                </div>
-            </div>
+    <div id="cart-sidebar">
+        <h2 style="color:var(--gold); margin-bottom:20px;">Ma Sélection</h2>
+        <div id="cart-items" style="margin-bottom:20px;"></div>
+        <div style="border-top:1px solid #333; padding-top:20px; font-size:1.2rem;">
+            Total: <span id="cart-total" style="color:var(--gold)">0€</span>
         </div>
-    </section>
-
-    <section id="avis" class="container">
-        <h2 class="section-title" data-aos="fade-up">Paroles de nos Hôtes</h2>
-        <div class="reviews-grid">
-            <div class="review-card" data-aos="fade-right">
-                <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                <p>"Une cuisine raffinée dans un cadre somptueux. Le ceviche de bar était d'une fraîcheur incroyable."</p>
-                <div class="review-author"><strong>- Yosr G.</strong> <small>TripAdvisor</small></div>
-            </div>
-            <div class="review-card" data-aos="fade-left">
-                <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                <p>"Le Burger gourmet est l'un des meilleurs de la région. Service digne du Marriott."</p>
-                <div class="review-author"><strong>- Jerome A.</strong> <small>Google Maps</small></div>
-            </div>
-        </div>
-    </section>
-
-    <section id="reservation" class="reservation">
-        <div class="container" data-aos="zoom-out">
-            <h2 class="section-title" style="color: white; border-color: white;">Votre Table vous Attend</h2>
-            <p style="margin-bottom: 50px; font-size: 1.2rem;">Vivez l'excellence gastronomique à Créteil.</p>
-            <a href="tel:+33188602000" class="btn-primary">Appeler pour Réserver</a>
-            <button onclick="toggleCart()" class="btn-secondary">Ma Commande (<span id="btn-cart-count">0</span>)</button>
-        </div>
-    </section>
-
-    <div id="cart-sidebar" style="position:fixed; right:-400px; top:0; width:380px; height:100vh; background:var(--charcoal); z-index:20000; padding:40px; transition:0.5s; border-left:1px solid var(--gold);">
-        <h2 style="color:var(--gold); margin-bottom:30px;">Ma Sélection</h2>
-        <div id="cart-items-list" style="margin-bottom:30px; max-height:60vh; overflow-y:auto;"></div>
-        <div style="font-size:1.5rem; display:flex; justify-content:space-between; border-top:1px solid #333; padding-top:20px;">
-            <span>Total :</span>
-            <span id="total-price" style="color:var(--gold);">0€</span>
-        </div>
-        <button class="btn-primary" style="width:100%; margin-top:30px; border-radius:0;" onclick="sendToWhatsapp()">Commander via WhatsApp</button>
-        <button class="btn-secondary" style="width:100%; margin-top:15px; border-radius:0; border-color:#555; color:#aaa;" onclick="toggleCart()">Fermer</button>
+        <button class="btn-order" style="margin-top:20px; background:var(--gold); color:var(--dark)" onclick="sendWhatsApp()">Commander</button>
+        <button class="btn-order" style="margin-top:10px; border-color:#555" onclick="toggleCart()">Fermer</button>
     </div>
-
-    <footer>
-        <div class="container">
-            <a href="#" class="logo" style="margin-bottom: 20px; display: inline-block;">Kitchen & Bar</a>
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>Emplacement</h4>
-                    <p>Courtyard by Marriott Paris Créteil<br>Accès parking privé gratuit</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Suivez l'Art</h4>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-tripadvisor"></i></a>
-                    </div>
-                </div>
-            </div>
-            <p style="font-size: 0.8rem; opacity: 0.5;">&copy; 2026 Kitchen & Bar | Design Haute Couture IA</p>
-        </div>
-    </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({ duration: 1200, once: true });
-
+        AOS.init();
         let cart = [];
         let total = 0;
 
         function toggleCart() {
-            const sidebar = document.getElementById('cart-sidebar');
-            sidebar.style.right = sidebar.style.right === '0px' ? '-400px' : '0px';
+            const sb = document.getElementById('cart-sidebar');
+            sb.style.right = sb.style.right === '0px' ? '-400px' : '0px';
         }
 
         function addToCart(name, price) {
             cart.push({name, price});
             total += price;
             updateUI();
-            if(document.getElementById('cart-sidebar').style.right !== '0px') toggleCart();
         }
 
         function updateUI() {
-            document.getElementById('btn-cart-count').innerText = cart.length;
-            document.getElementById('total-price').innerText = total + '€';
-            document.getElementById('cart-items-list').innerHTML = cart.map((i, index) => `
-                <div style="display:flex; justify-content:space-between; margin-bottom:15px; animation: fadeIn 0.3s forwards;">
-                    <span>${i.name}</span>
-                    <span style="color:var(--gold)">${i.price}€</span>
+            document.getElementById('cart-count').innerText = cart.length;
+            document.getElementById('cart-total').innerText = total + '€';
+            document.getElementById('cart-items').innerHTML = cart.map(i => `
+                <div style="display:flex; justify-content:space-between; margin-bottom:10px;">
+                    <span>${i.name}</span><span>${i.price}€</span>
                 </div>
             `).join('');
         }
 
-        function sendToWhatsapp() {
-            if(cart.length === 0) return alert("Votre sélection est vide");
-            let msg = "Bonjour Kitchen & Bar, je souhaite commander :\n\n" + 
-                      cart.map(i => "📍 " + i.name + " (" + i.price + "€)").join("\n") + 
-                      "\n\n💰 Total : " + total + "€";
-            window.open(`https://wa.me/33188602000?text=${encodeURIComponent(msg)}`, '_blank');
+        function sendWhatsApp() {
+            let msg = "Commande Kitchen & Bar :\n" + cart.map(i => "- " + i.name).join("\n") + "\nTotal: " + total + "€";
+            window.open(`https://wa.me/33188602000?text=${encodeURIComponent(msg)}`);
         }
-
-        window.addEventListener('scroll', () => {
-            const header = document.getElementById('header');
-            if (window.scrollY > 50) header.classList.add('scrolled');
-            else header.classList.remove('scrolled');
-        });
     </script>
 </body>
 </html>
