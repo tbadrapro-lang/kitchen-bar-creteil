@@ -5,15 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>KITCHEN & BAR | Gastronomie 5★ | Courtyard Marriott Paris Créteil</title>
   
-  <!-- Polices premium (identiques Takahisa) -->
+  <!-- Polices premium -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
-  <!-- Font Awesome 6 -->
+  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   
-  <!-- AOS animations (style Takahisa) -->
+  <!-- AOS animations -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   
   <!-- Favicon -->
@@ -96,14 +96,17 @@
     .nav-links a:hover::after { width: 100%; }
     .mobile-menu { display: none; color: var(--gold); font-size: 1.8rem; cursor: pointer; }
     
-    /* ===== HERO (style Takahisa) ===== */
+    /* ===== HERO (image de fond 10.png) ===== */
     .hero {
       height: 100vh; min-height: 750px;
-      background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)),
-                  url('data:image/svg+xml,%3Csvg width="1920" height="1080" xmlns="http://www.w3.org/2000/svg"%3E%3Cdefs%3E%3ClinearGradient id="g" x1="0%25" y1="0%25" x2="100%25" y2="100%25"%3E%3Cstop offset="0%25" stop-color="%231a1a1a"/%3E%3Cstop offset="100%25" stop-color="%230a0a0a"/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill="url(%23g)" width="1920" height="1080"/%3E%3Ctext x="50%25" y="45%25" font-size="160" fill="%23C6A15B" text-anchor="middle" font-family="Georgia" opacity="0.08"%3E✦ KITCHEN %26 BAR ✦%3C/text%3E%3C/svg%3E');
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('10.png');
       background-size: cover; background-position: center; background-attachment: fixed;
       display: flex; flex-direction: column; justify-content: center; align-items: center;
       text-align: center; position: relative;
+    }
+    /* Fallback si l'image 10.png n'existe pas */
+    .hero {
+      background-color: #0B0B0B;
     }
     .hero::before {
       content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
@@ -141,7 +144,7 @@
       box-shadow: var(--shadow-gold);
     }
     
-    /* ===== SECTIONS AVEC IMAGES (style Takahisa) ===== */
+    /* ===== SECTIONS AVEC IMAGES ===== */
     .split-section {
       display: flex; align-items: center; gap: 80px; margin: 80px 0;
     }
@@ -185,15 +188,20 @@
     }
     .menu-item {
       background: rgba(21,21,21,0.7); border: 1px solid rgba(198,161,91,0.15);
-      padding: 40px 35px; border-radius: 16px; transition: var(--transition);
+      padding: 30px 25px; border-radius: 16px; transition: var(--transition);
       backdrop-filter: blur(10px);
     }
     .menu-item:hover {
       border-color: var(--gold); transform: translateY(-10px);
       box-shadow: var(--shadow-gold); background: #1c1c1c;
     }
+    /* Miniature du plat */
+    .item-image {
+      width: 100%; height: 180px; object-fit: cover; border-radius: 12px;
+      margin-bottom: 20px; border: 1px solid rgba(198,161,91,0.2);
+    }
     .item-name {
-      font-family: 'Cormorant Garamond', serif; font-size: 2rem; margin-bottom: 15px;
+      font-family: 'Cormorant Garamond', serif; font-size: 2rem; margin-bottom: 10px;
     }
     .item-desc { opacity: 0.8; margin-bottom: 20px; }
     .item-price {
@@ -201,7 +209,7 @@
       font-family: 'Cormorant Garamond', serif;
     }
     
-    /* ===== GALERIE (style Takahisa) ===== */
+    /* ===== GALERIE ===== */
     .gallery-grid {
       display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px;
     }
@@ -328,7 +336,7 @@
   </div>
 </header>
 
-<!-- HERO -->
+<!-- HERO (image de fond 10.png) -->
 <section class="hero">
   <div class="hero-content">
     <h1 data-aos="fade-down" data-aos-duration="1200">KITCHEN & BAR</h1>
@@ -342,7 +350,7 @@
   </div>
 </section>
 
-<!-- SECTION EXPÉRIENCE (style Takahisa avec image pleine largeur) -->
+<!-- SECTION EXPÉRIENCE -->
 <section id="experience">
   <div class="container">
     <div class="split-section" data-aos="fade-up">
@@ -362,14 +370,44 @@
 <section id="menu" class="container">
   <h2 class="section-title" data-aos="fade-up">La Carte</h2>
   
-  <!-- Entrées -->
+  <!-- Entrées (avec miniatures personnalisées) -->
   <h3 style="font-size:2.2rem; margin:60px 0 30px;" data-aos="fade-up">Pour Commencer</h3>
   <div class="menu-grid" data-aos="fade-up" data-aos-delay="100">
-    <div class="menu-item"><h4 class="item-name">Velouté de Châtaigne</h4><p class="item-desc">Onctueux, muscade fraîche.</p><div class="item-price">9 €</div></div>
-    <div class="menu-item"><h4 class="item-name">Tartelette à l'Oignon</h4><p class="item-desc">Pâte feuilletée, oignons caramélisés.</p><div class="item-price">9 €</div></div>
-    <div class="menu-item"><h4 class="item-name">Pâté de Campagne</h4><p class="item-desc">Cornichons, salade croquante.</p><div class="item-price">9 €</div></div>
-    <div class="menu-item"><h4 class="item-name">Rillette de Saumon</h4><p class="item-desc">Crème d'Isigny, pain toasté.</p><div class="item-price">10 €</div></div>
-    <div class="menu-item"><h4 class="item-name">Ceviche de Bar</h4><p class="item-desc">Agrumes, avocat, coriandre.</p><div class="item-price">11 €</div></div>
+    <!-- Velouté de Châtaigne -->
+    <div class="menu-item">
+      <img class="item-image" src="Velout%C3%A9%20de%20Ch%C3%A2taigne.png" alt="Velouté de Châtaigne" onerror="this.style.display='none'">
+      <h4 class="item-name">Velouté de Châtaigne</h4>
+      <p class="item-desc">Onctueux, muscade fraîche.</p>
+      <div class="item-price">9 €</div>
+    </div>
+    <!-- Tartelette à l'Oignon -->
+    <div class="menu-item">
+      <img class="item-image" src="Tartelette%20%C3%A0%20l%E2%80%99oignon.png" alt="Tartelette à l'Oignon" onerror="this.style.display='none'">
+      <h4 class="item-name">Tartelette à l'Oignon</h4>
+      <p class="item-desc">Pâte feuilletée, oignons caramélisés.</p>
+      <div class="item-price">9 €</div>
+    </div>
+    <!-- Pâté de Campagne -->
+    <div class="menu-item">
+      <img class="item-image" src="P%C3%A2t%C3%A9%20de%20campagne.png" alt="Pâté de Campagne" onerror="this.style.display='none'">
+      <h4 class="item-name">Pâté de Campagne</h4>
+      <p class="item-desc">Cornichons, salade croquante.</p>
+      <div class="item-price">9 €</div>
+    </div>
+    <!-- Rillette de Saumon -->
+    <div class="menu-item">
+      <img class="item-image" src="Rillette%20de%20saumon.png" alt="Rillette de Saumon" onerror="this.style.display='none'">
+      <h4 class="item-name">Rillette de Saumon</h4>
+      <p class="item-desc">Crème d'Isigny, pain toasté.</p>
+      <div class="item-price">10 €</div>
+    </div>
+    <!-- Ceviche de Bar -->
+    <div class="menu-item">
+      <img class="item-image" src="Ceviche%20de%20bar.png" alt="Ceviche de Bar" onerror="this.style.display='none'">
+      <h4 class="item-name">Ceviche de Bar</h4>
+      <p class="item-desc">Agrumes, avocat, coriandre.</p>
+      <div class="item-price">11 €</div>
+    </div>
   </div>
   
   <!-- Plats -->
@@ -401,7 +439,7 @@
   </div>
 </section>
 
-<!-- SECTION IMAGE + TEXTE (inversée) -->
+<!-- SECTION IMAGE + TEXTE -->
 <section id="terrasse">
   <div class="container">
     <div class="split-section reverse" data-aos="fade-up">
@@ -417,7 +455,7 @@
   </div>
 </section>
 
-<!-- GALERIE PHOTOS (8 images) -->
+<!-- GALERIE PHOTOS -->
 <section id="galerie" class="gallery">
   <div class="container">
     <h2 class="section-title" data-aos="fade-up">Galerie Gourmande</h2>
