@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kitchen & Bar - Courtyard by Marriott Paris Créteil</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #ff6b35;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #ff6b35;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23333" width="1200" height="600"/><text x="50%" y="50%" font-size="40" fill="%23fff" text-anchor="middle" dy=".3em">Restaurant élégant</text></svg>');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            margin-top: 80px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            font-size: 1.2rem;
+        }
+
+        .stars {
+            color: #ffd700;
+        }
+
+        .price-range {
+            background: #ff6b35;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-weight: bold;
+        }
+
+        /* Sections */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #1a1a1a;
+        }
+
+        /* Info Section */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .info-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .info-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .info-icon {
+            font-size: 3rem;
+            color: #ff6b35;
+            margin-bottom: 1rem;
+        }
+
+        /* Menu */
+        .menu-category {
+            margin-bottom: 4rem;
+        }
+
+        .category-title {
+            font-size: 2rem;
+            color: #ff6b35;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .menu-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .menu-item h4 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .menu-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ff6b35;
+        }
+
+        /* Reviews */
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .review-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-left: 5px solid #ff6b35;
+        }
+
+        .review-stars {
+            color: #ffd700;
+            margin-bottom: 1rem;
+        }
+
+        /* CTA */
+        .cta {
+            background: linear-gradient(135deg, #ff6b35 0%, #e55a30 100%);
+            color: white;
+            text-align: center;
+            padding: 4rem 0;
+        }
+
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background: white;
+            color: #ff6b35;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: transform 0.3s;
+            margin: 0 1rem;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        .social-links {
+            margin: 2rem 0;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 1rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #ff6b35;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .menu-item {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <i class="fas fa-utensils"></i> Kitchen & Bar
+            </div>
+            <ul class="nav-links">
+                <li><a href="#accueil">Accueil</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#avis">Avis</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section id="accueil" class="hero">
+        <div class="hero-content container">
+            <h1>Kitchen & Bar</h1>
+            <p>Courtyard by Marriott Paris Créteil</p>
+            <div class="rating">
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <span>3.1 (26 avis)</span>
+                <div class="price-range">20-30€ par personne</div>
+            </div>
+            <a href="#menu" class="btn">Voir le Menu</a>
+            <a href="#contact" class="btn">Réserver</a>
+        </div>
+    </section>
+
+    <!-- Info -->
+    <section class="container">
+        <div class="info-grid">
+            <div class="info-card">
+                <div class="info-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <h3>Adresse</h3>
+                <p>2 Rue Daniel Costantini<br>94000 Créteil</p>
+            </div>
+            <div class="info-card">
+                <div class="info-icon">
+                    <i class="fas fa-phone"></i>
+                </div>
+                <h3>Téléphone</h3>
+                <p><a href="tel:+33188602000">01 88 60 20 00</a></p>
+            </div>
+            <div class="info-card">
+                <div class="info-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <h3>Horaires</h3>
+                <p>Ouvert jusqu'à 23:30</p>
+            </div>
+            <div class="info-card">
+                <div class="info-icon">
+                    <i class="fas fa-utensils"></i>
+                </div>
+                <h3>Services</h3>
+                <p>Repas sur place</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu -->
+    <section id="menu">
+        <h2 class="section-title">Notre Menu</h2>
+        
+        <!-- Entrées -->
+        <div class="menu-category container">
+            <h3 class="category-title">Pour Commencer</h3>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <div>
+                        <h4>Velouté de châtaigne</h4>
+                    </div>
+                    <div class="menu-price">9€</div>
+                </div>
+                <div class="menu-item">
+                    <div>
+                        <h4>Tartelette à l'oignon</h4>
+                    </div>
+                    <div class="menu-price">9€</div>
+                </div>
+                <div class="menu-item">
+                    <div>
+                        <h4>Pâté de Campagne, salade et pickles</h4>
+                    </div>
+                    <div class="menu-price">9€</div>
+                </div>
+                <div class="menu-item">
+                    <div>
+                        <h4>Rillette de saumon</h4>
+                    </div>
+                    <div class="menu-price">10€</div>
+                </div>
+                <div class="menu-item">
+                    <div>
+                        <h4>Ceviche de bar</h4>
+                    </div>
+                    <div class="menu-price">11€</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Plats -->
+        <div class="menu-category container">
+            <h3 class="category-title">Plats</h3>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <div>
+                        <h4>Pièce du boucher</h4>
+                    </div>
+                    <div class="menu-price">24€</div>
+                </div>
+                <div class="menu-item">
+                    <div>
+                        <h4>Poisson du jour</h4>
+                    </div>
+                    <div class="menu-price">21€</div>
+                </div>
+                <div class="menu-item">
+                    <div>
+                        <h4>Bowl Falafel</h4>
+                    </div>
+                    <div class="menu-price">16.50€</div>
+                </div>
+                <div class="menu-item">
+                    <div>
+                        <h4>K&B Burger</h4>
+                        <p>Steak de boeuf, fromage, sauce barbecue maison</p>
+                    </div>
+                    <div class="menu-price">21€</div>
+                </div>
+                <div class="menu-item">
+                    <div>
+                        <h4>K&B Burger Végé</h4>
+                        <p>Steak végétarien, crudités, frites</p>
+                    </div>
+                    <div class="menu-price">19€</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Desserts -->
+        <div class="menu-category container">
+            <h3 class="category-title">Desserts</h3>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <div>
+                        <h4>Compote de pommes maison</h4>
+                    </div>
+                    <div class="menu-price">9€</div>
+                </div>
+                <div class="menu-item">
+                    <div>
+                        <h4>Brownie & Glace vanille</h4>
+                    </div>
+                    <div class="menu-price">9€</div>
+                </div>
+                <div class="menu-item">
+                    <div>
+                        <h4>Salade de fruits</h4>
+                    </div>
+                    <div class="menu-price">8.50€</div>
+                </div>
+                <div class="menu-item">
+                    <div>
+                        <h4>Crème caramel</h4>
+                    </div>
+                    <div class="menu-price">9€</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Avis -->
+    <section id="avis" style="background: #f8f9fa;">
+        <div class="container">
+            <h2 class="section-title">Avis Clients</h2>
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="review-stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p>"J'ai eu le plaisir de déguster un plat magnifiquement présenté et savoureux : un poisson parfaitement cuit, accompagné de légumes frais..."</p>
+                    <strong>- Yosr G. (Local Guide)</strong>
+                </div>
+                <div class="review-card">
+                    <div class="review-stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p>"Un agréable déjeuner ce midi dans ce restaurant entre collègues de travail ! Filet de Dorade, Salade Tomates Burrata, Crème Brûlée."</p>
+                    <strong>- Client satisfait</strong>
+                </div>
+                <div class="review-card">
+                    <div class="review-stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p>"Très bonne ambiance et service attentionné. Les cocktails sont excellents!"</p>
+                    <strong>- Jerome A.</strong>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section id="contact" class="cta">
+        <div class="container">
+            <h2>Réservez votre table dès maintenant</h2>
+            <p>Appelez-nous au <strong>01 88 60 20 00</strong></p>
+            <a href="tel:+33188602000" class="btn">Appeler</a>
+            <a href="https://menupleaz.com" target="_blank" class="btn">Voir Menu Complet</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <h3>Kitchen & Bar</h3>
+            <p>2 Rue Daniel Costantini, 94000 Créteil</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-tripadvisor"></i></a>
+            </div>
+            <p>&copy; 2024 Kitchen & Bar at Courtyard by Marriott. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
