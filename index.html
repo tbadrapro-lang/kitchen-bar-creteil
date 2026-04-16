@@ -10,10 +10,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
-  <!-- Font Awesome 6 (icônes) -->
+  <!-- Font Awesome 6 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   
-  <!-- AOS (animations au scroll) -->
+  <!-- AOS animations -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   
   <!-- Favicon -->
@@ -375,7 +375,7 @@
       clear: both;
     }
     
-    /* ===== GALERIE / AMBIANCE ===== */
+    /* ===== GALERIE PHOTOS (IMAGES RÉELLES) ===== */
     .gallery {
       background: linear-gradient(145deg, #0f0f0f 0%, #151515 100%);
     }
@@ -388,37 +388,61 @@
     
     .gallery-item {
       aspect-ratio: 1 / 1;
-      background: var(--charcoal);
       border-radius: 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      color: var(--gold);
-      font-size: 3rem;
+      overflow: hidden;
+      position: relative;
       border: 1px solid rgba(212,175,55,0.2);
       transition: var(--transition);
       cursor: pointer;
-      padding: 20px;
-      text-align: center;
+      background: var(--charcoal);
     }
     
-    .gallery-item i {
-      font-size: 4rem;
-      margin-bottom: 15px;
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
     
-    .gallery-item span {
+    /* Placeholder stylé si l'image ne charge pas */
+    .gallery-item {
+      background: linear-gradient(145deg, #1e1e1e, #2a2a2a);
+    }
+    
+    .gallery-item img[src=""] {
+      display: none;
+    }
+    
+    /* Fallback avec numéro d'image */
+    .gallery-item::after {
+      content: attr(data-img);
+      position: absolute;
+      bottom: 15px;
+      right: 20px;
+      color: var(--gold);
       font-family: 'Cormorant Garamond', serif;
       font-size: 1.2rem;
-      color: var(--cream);
-      opacity: 0.9;
+      font-weight: 600;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+      z-index: 2;
+      opacity: 0.8;
+      transition: var(--transition);
     }
     
     .gallery-item:hover {
-      transform: scale(1.02);
       border-color: var(--gold);
       box-shadow: var(--shadow-gold);
+      transform: scale(1.02);
+    }
+    
+    .gallery-item:hover img {
+      transform: scale(1.08);
+    }
+    
+    .gallery-item:hover::after {
+      opacity: 1;
+      transform: translateY(-3px);
     }
     
     /* ===== INFOS PRATIQUES ===== */
@@ -642,7 +666,7 @@
       .btn-group { flex-direction: column; align-items: center; }
     }
     
-    /* Scrollbar stylée */
+    /* Scrollbar */
     ::-webkit-scrollbar { width: 10px; }
     ::-webkit-scrollbar-track { background: var(--charcoal); }
     ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; }
@@ -657,7 +681,7 @@
       <a href="#" class="logo">KITCHEN & BAR</a>
       <ul class="nav-links">
         <li><a href="#menu">Carte</a></li>
-        <li><a href="#galerie">Ambiance</a></li>
+        <li><a href="#galerie">Galerie</a></li>
         <li><a href="#info">Infos</a></li>
         <li><a href="#avis">Avis</a></li>
         <li><a href="#reservation">Réserver</a></li>
@@ -695,172 +719,87 @@
       <h3 class="category-title">Pour Commencer</h3>
     </div>
     <div class="menu-grid">
-      <div class="menu-item">
-        <h4 class="item-name">Velouté de Châtaigne</h4>
-        <p class="item-desc">Velouté onctueux aux châtaignes d’Ardèche, relevé d’une pointe de muscade.</p>
-        <div class="item-price">9 €</div>
-        <div class="allergens">Gluten, Lait</div>
-      </div>
-      <div class="menu-item">
-        <h4 class="item-name">Tartelette à l'Oignon</h4>
-        <p class="item-desc">Pâte feuilletée croustillante, oignons caramélisés et réduction balsamique.</p>
-        <div class="item-price">9 €</div>
-        <div class="allergens">Gluten, Œufs</div>
-      </div>
-      <div class="menu-item">
-        <h4 class="item-name">Pâté de Campagne</h4>
-        <p class="item-desc">Recette traditionnelle, servi avec cornichons et salade croquante.</p>
-        <div class="item-price">9 €</div>
-        <div class="allergens">Gluten, Sulfites</div>
-      </div>
-      <div class="menu-item">
-        <h4 class="item-name">Rillette de Saumon</h4>
-        <p class="item-desc">Saumon fumé concassé, crème d’Isigny et pain toasté maison.</p>
-        <div class="item-price">10 €</div>
-        <div class="allergens">Poisson, Lait, Gluten</div>
-      </div>
-      <div class="menu-item">
-        <h4 class="item-name">Ceviche de Bar</h4>
-        <p class="item-desc">Bar frais mariné aux agrumes, avocat et coriandre, touche de piment doux.</p>
-        <div class="item-price">11 €</div>
-        <div class="allergens">Poisson</div>
-      </div>
+      <div class="menu-item"><h4 class="item-name">Velouté de Châtaigne</h4><p class="item-desc">Velouté onctueux aux châtaignes d’Ardèche, relevé d’une pointe de muscade.</p><div class="item-price">9 €</div><div class="allergens">Gluten, Lait</div></div>
+      <div class="menu-item"><h4 class="item-name">Tartelette à l'Oignon</h4><p class="item-desc">Pâte feuilletée croustillante, oignons caramélisés et réduction balsamique.</p><div class="item-price">9 €</div><div class="allergens">Gluten, Œufs</div></div>
+      <div class="menu-item"><h4 class="item-name">Pâté de Campagne</h4><p class="item-desc">Recette traditionnelle, servi avec cornichons et salade croquante.</p><div class="item-price">9 €</div><div class="allergens">Gluten, Sulfites</div></div>
+      <div class="menu-item"><h4 class="item-name">Rillette de Saumon</h4><p class="item-desc">Saumon fumé concassé, crème d’Isigny et pain toasté maison.</p><div class="item-price">10 €</div><div class="allergens">Poisson, Lait, Gluten</div></div>
+      <div class="menu-item"><h4 class="item-name">Ceviche de Bar</h4><p class="item-desc">Bar frais mariné aux agrumes, avocat et coriandre, touche de piment doux.</p><div class="item-price">11 €</div><div class="allergens">Poisson</div></div>
     </div>
   </div>
   
   <!-- Plats -->
   <div class="menu-category" data-aos="fade-up">
-    <div class="category-header">
-      <div class="category-icon"><i class="fas fa-drumstick-bite"></i></div>
-      <h3 class="category-title">Plats Signature</h3>
-    </div>
+    <div class="category-header"><div class="category-icon"><i class="fas fa-drumstick-bite"></i></div><h3 class="category-title">Plats Signature</h3></div>
     <div class="menu-grid">
-      <div class="menu-item">
-        <h4 class="item-name">Pièce du Boucher</h4>
-        <p class="item-desc">Purée maison onctueuse, sauce chimichurri relevée, légumes de saison.</p>
-        <div class="item-price">24 €</div>
-        <div class="allergens">Lait</div>
-      </div>
-      <div class="menu-item">
-        <h4 class="item-name">Pâtes au Pesto</h4>
-        <p class="item-desc">Basilic frais, pignons de pin grillés, parmesan AOP, linguine al dente.</p>
-        <div class="item-price">18 €</div>
-        <div class="allergens">Gluten, Lait, Fruits à coque</div>
-      </div>
-      <div class="menu-item">
-        <h4 class="item-name">Poisson du Jour</h4>
-        <p class="item-desc">Selon arrivage, riz basmati parfumé et sauce vierge aux herbes fraîches.</p>
-        <div class="item-price">21 €</div>
-        <div class="allergens">Poisson</div>
-      </div>
-      <div class="menu-item">
-        <h4 class="item-name">Bowl Falafel</h4>
-        <p class="item-desc">Pois chiches, herbes, légumes croquants, sauce tahini citronnée.</p>
-        <div class="item-price">16,5 €</div>
-        <div class="allergens">Sésame, Gluten (possible)</div>
-      </div>
+      <div class="menu-item"><h4 class="item-name">Pièce du Boucher</h4><p class="item-desc">Purée maison onctueuse, sauce chimichurri relevée, légumes de saison.</p><div class="item-price">24 €</div><div class="allergens">Lait</div></div>
+      <div class="menu-item"><h4 class="item-name">Pâtes au Pesto</h4><p class="item-desc">Basilic frais, pignons de pin grillés, parmesan AOP, linguine al dente.</p><div class="item-price">18 €</div><div class="allergens">Gluten, Lait, Fruits à coque</div></div>
+      <div class="menu-item"><h4 class="item-name">Poisson du Jour</h4><p class="item-desc">Selon arrivage, riz basmati parfumé et sauce vierge aux herbes fraîches.</p><div class="item-price">21 €</div><div class="allergens">Poisson</div></div>
+      <div class="menu-item"><h4 class="item-name">Bowl Falafel</h4><p class="item-desc">Pois chiches, herbes, légumes croquants, sauce tahini citronnée.</p><div class="item-price">16,5 €</div><div class="allergens">Sésame, Gluten (possible)</div></div>
     </div>
   </div>
   
   <!-- Incontournables -->
   <div class="menu-category" data-aos="fade-up">
-    <div class="category-header">
-      <div class="category-icon"><i class="fas fa-crown"></i></div>
-      <h3 class="category-title">Incontournables</h3>
-    </div>
+    <div class="category-header"><div class="category-icon"><i class="fas fa-crown"></i></div><h3 class="category-title">Incontournables</h3></div>
     <div class="menu-grid">
-      <div class="menu-item">
-        <h4 class="item-name">Burger K&B</h4>
-        <p class="item-desc">Steak haché juteux, buns moelleux, oignons caramélisés, frites maison.</p>
-        <div class="item-price">21 €</div>
-        <div class="allergens">Gluten, Lait, Œufs</div>
-      </div>
-      <div class="menu-item">
-        <h4 class="item-name">Burger Végé K&B</h4>
-        <p class="item-desc">Steak végétal savoureux, mêmes garnitures, frites maison.</p>
-        <div class="item-price">19 €</div>
-        <div class="allergens">Gluten, Soja</div>
-      </div>
-      <div class="menu-item">
-        <h4 class="item-name">Salade César</h4>
-        <p class="item-desc">Poulet tendre, croûtons, parmesan, sauce César maison.</p>
-        <div class="item-price">18 €</div>
-        <div class="allergens">Gluten, Lait, Œufs</div>
-      </div>
-      <div class="menu-item">
-        <h4 class="item-name">Club Sandwich</h4>
-        <p class="item-desc">Pain toasté, poulet, bacon, crudités fraîches, sauce cocktail.</p>
-        <div class="item-price">18 €</div>
-        <div class="allergens">Gluten, Œufs</div>
-      </div>
-      <div class="menu-item">
-        <h4 class="item-name">Tenders K&B</h4>
-        <p class="item-desc">Marinés maison, panure croustillante, sauce BBQ ou miel-moutarde.</p>
-        <div class="item-price">19 €</div>
-        <div class="allergens">Gluten, Œufs</div>
-      </div>
+      <div class="menu-item"><h4 class="item-name">Burger K&B</h4><p class="item-desc">Steak haché juteux, buns moelleux, oignons caramélisés, frites maison.</p><div class="item-price">21 €</div><div class="allergens">Gluten, Lait, Œufs</div></div>
+      <div class="menu-item"><h4 class="item-name">Burger Végé K&B</h4><p class="item-desc">Steak végétal savoureux, mêmes garnitures, frites maison.</p><div class="item-price">19 €</div><div class="allergens">Gluten, Soja</div></div>
+      <div class="menu-item"><h4 class="item-name">Salade César</h4><p class="item-desc">Poulet tendre, croûtons, parmesan, sauce César maison.</p><div class="item-price">18 €</div><div class="allergens">Gluten, Lait, Œufs</div></div>
+      <div class="menu-item"><h4 class="item-name">Club Sandwich</h4><p class="item-desc">Pain toasté, poulet, bacon, crudités fraîches, sauce cocktail.</p><div class="item-price">18 €</div><div class="allergens">Gluten, Œufs</div></div>
+      <div class="menu-item"><h4 class="item-name">Tenders K&B</h4><p class="item-desc">Marinés maison, panure croustillante, sauce BBQ ou miel-moutarde.</p><div class="item-price">19 €</div><div class="allergens">Gluten, Œufs</div></div>
     </div>
   </div>
   
   <!-- Desserts -->
   <div class="menu-category" data-aos="fade-up">
-    <div class="category-header">
-      <div class="category-icon"><i class="fas fa-cake"></i></div>
-      <h3 class="category-title">Douceurs Sucrées</h3>
-    </div>
+    <div class="category-header"><div class="category-icon"><i class="fas fa-cake"></i></div><h3 class="category-title">Douceurs Sucrées</h3></div>
     <div class="menu-grid">
-      <div class="menu-item">
-        <h4 class="item-name">Crème Caramel</h4>
-        <p class="item-desc">Caramel au beurre salé, vanille de Madagascar.</p>
-        <div class="item-price">9 €</div>
-        <div class="allergens">Lait, Œufs</div>
-      </div>
-      <div class="menu-item">
-        <h4 class="item-name">Compote de Pommes</h4>
-        <p class="item-desc">Pommes du verger cuites lentement, cannelle, crème fouettée.</p>
-        <div class="item-price">9 €</div>
-        <div class="allergens">Lait (option)</div>
-      </div>
-      <div class="menu-item">
-        <h4 class="item-name">Brownie & Glace Vanille</h4>
-        <p class="item-desc">Brownie fondant cœur chocolat, glace vanille Bourbon.</p>
-        <div class="item-price">9 €</div>
-        <div class="allergens">Gluten, Lait, Œufs</div>
-      </div>
-      <div class="menu-item">
-        <h4 class="item-name">Salade de Fruits</h4>
-        <p class="item-desc">Fruits frais de saison, sirop léger menthe-citron vert.</p>
-        <div class="item-price">8,5 €</div>
-        <div class="allergens">Aucun</div>
-      </div>
+      <div class="menu-item"><h4 class="item-name">Crème Caramel</h4><p class="item-desc">Caramel au beurre salé, vanille de Madagascar.</p><div class="item-price">9 €</div><div class="allergens">Lait, Œufs</div></div>
+      <div class="menu-item"><h4 class="item-name">Compote de Pommes</h4><p class="item-desc">Pommes du verger cuites lentement, cannelle, crème fouettée.</p><div class="item-price">9 €</div><div class="allergens">Lait (option)</div></div>
+      <div class="menu-item"><h4 class="item-name">Brownie & Glace Vanille</h4><p class="item-desc">Brownie fondant cœur chocolat, glace vanille Bourbon.</p><div class="item-price">9 €</div><div class="allergens">Gluten, Lait, Œufs</div></div>
+      <div class="menu-item"><h4 class="item-name">Salade de Fruits</h4><p class="item-desc">Fruits frais de saison, sirop léger menthe-citron vert.</p><div class="item-price">8,5 €</div><div class="allergens">Aucun</div></div>
     </div>
   </div>
 </section>
 
-<!-- GALERIE / AMBIANCE -->
+<!-- GALERIE PHOTOS (IMAGES 1 À 8) -->
 <section id="galerie" class="gallery">
   <div class="container">
-    <h2 class="section-title" data-aos="fade-up">Ambiance 5★ Dubaï Style</h2>
+    <h2 class="section-title" data-aos="fade-up">Galerie Gourmande</h2>
+    <p style="text-align:center; margin-bottom:50px; opacity:0.8;" data-aos="fade-up">
+      <i class="fas fa-camera"></i> Découvrez l'ambiance et nos créations
+    </p>
+    
+    <!-- Grille de 8 images. Placez vos photos dans le dossier "images" avec les noms 1.jpg, 2.jpg ... 8.jpg -->
     <div class="gallery-grid" data-aos="fade-up" data-aos-delay="200">
-      <div class="gallery-item">
-        <i class="fas fa-wine-glass-alt"></i>
-        <span>Cocktails d'exception</span>
+      <div class="gallery-item" data-img="1/8">
+        <img src="images/1.jpg" alt="Plat signature" onerror="this.style.display='none'">
       </div>
-      <div class="gallery-item">
-        <i class="fas fa-utensil-spoon"></i>
-        <span>Service gastronomique</span>
+      <div class="gallery-item" data-img="2/8">
+        <img src="images/2.jpg" alt="Cocktail d'exception" onerror="this.style.display='none'">
       </div>
-      <div class="gallery-item">
-        <i class="fas fa-chair"></i>
-        <span>Terrasse lounge</span>
+      <div class="gallery-item" data-img="3/8">
+        <img src="images/3.jpg" alt="Salle du restaurant" onerror="this.style.display='none'">
       </div>
-      <div class="gallery-item">
-        <i class="fas fa-star"></i>
-        <span>Étoilé Michelin</span>
+      <div class="gallery-item" data-img="4/8">
+        <img src="images/4.jpg" alt="Terrasse lounge" onerror="this.style.display='none'">
+      </div>
+      <div class="gallery-item" data-img="5/8">
+        <img src="images/5.jpg" alt="Dessert gourmand" onerror="this.style.display='none'">
+      </div>
+      <div class="gallery-item" data-img="6/8">
+        <img src="images/6.jpg" alt="Service gastronomique" onerror="this.style.display='none'">
+      </div>
+      <div class="gallery-item" data-img="7/8">
+        <img src="images/7.jpg" alt="Planche à partager" onerror="this.style.display='none'">
+      </div>
+      <div class="gallery-item" data-img="8/8">
+        <img src="images/8.jpg" alt="Vue du bar" onerror="this.style.display='none'">
       </div>
     </div>
-    <p style="text-align:center; margin-top:40px; opacity:0.8; font-style:italic;" data-aos="fade-up">
-      <i class="fas fa-camera"></i> Les photos des plats sont disponibles sur place et sur nos réseaux.
+    
+    <p style="text-align:center; margin-top:40px; font-size:0.9rem; opacity:0.6;" data-aos="fade-up">
+      * Placez vos propres photos dans le dossier "images" (1.jpg à 8.jpg)
     </p>
   </div>
 </section>
@@ -869,26 +808,10 @@
 <section id="info" class="container">
   <h2 class="section-title" data-aos="fade-up">Informations</h2>
   <div class="info-grid">
-    <div class="info-card" data-aos="fade-up" data-aos-delay="100">
-      <div class="info-icon"><i class="fas fa-map-pin"></i></div>
-      <h3>Adresse</h3>
-      <p>2 Rue Daniel Costantini<br>94000 Créteil, France</p>
-    </div>
-    <div class="info-card" data-aos="fade-up" data-aos-delay="200">
-      <div class="info-icon"><i class="fas fa-clock"></i></div>
-      <h3>Horaires</h3>
-      <p>Ouvert aujourd'hui · Ferme à 23:30<br>Service continu 12h–22h</p>
-    </div>
-    <div class="info-card" data-aos="fade-up" data-aos-delay="300">
-      <div class="info-icon"><i class="fas fa-phone-alt"></i></div>
-      <h3>Contact</h3>
-      <p>01 88 60 20 00<br>menupleaz.com</p>
-    </div>
-    <div class="info-card" data-aos="fade-up" data-aos-delay="400">
-      <div class="info-icon"><i class="fas fa-check-circle"></i></div>
-      <h3>Services</h3>
-      <p>Terrasse · Cocktails · Végétarien<br>Afterwork · Business</p>
-    </div>
+    <div class="info-card" data-aos="fade-up" data-aos-delay="100"><div class="info-icon"><i class="fas fa-map-pin"></i></div><h3>Adresse</h3><p>2 Rue Daniel Costantini<br>94000 Créteil, France</p></div>
+    <div class="info-card" data-aos="fade-up" data-aos-delay="200"><div class="info-icon"><i class="fas fa-clock"></i></div><h3>Horaires</h3><p>Ouvert aujourd'hui · Ferme à 23:30<br>Service continu 12h–22h</p></div>
+    <div class="info-card" data-aos="fade-up" data-aos-delay="300"><div class="info-icon"><i class="fas fa-phone-alt"></i></div><h3>Contact</h3><p>01 88 60 20 00<br>menupleaz.com</p></div>
+    <div class="info-card" data-aos="fade-up" data-aos-delay="400"><div class="info-icon"><i class="fas fa-check-circle"></i></div><h3>Services</h3><p>Terrasse · Cocktails · Végétarien<br>Afterwork · Business</p></div>
   </div>
 </section>
 
@@ -897,25 +820,11 @@
   <div class="container">
     <h2 class="section-title" data-aos="fade-up">Ce que disent nos hôtes</h2>
     <div class="reviews-grid">
-      <div class="review-card" data-aos="fade-up" data-aos-delay="100">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">« Poisson parfaitement cuit, légumes croquants, présentation magnifique. Un régal. »</p>
-        <div class="review-author"><i class="fas fa-user-circle"></i> Yosr Gargouri</div>
-      </div>
-      <div class="review-card" data-aos="fade-up" data-aos-delay="200">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">« Cuisine fine, produits frais, service rapide et cadre détendu. Je recommande. »</p>
-        <div class="review-author"><i class="fas fa-user-circle"></i> M C Garden</div>
-      </div>
-      <div class="review-card" data-aos="fade-up" data-aos-delay="300">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">« Dîner très agréable, carte de saison bien faite. Exactement ce qu’on attend. »</p>
-        <div class="review-author"><i class="fas fa-user-circle"></i> Nicolas Billaud</div>
-      </div>
+      <div class="review-card" data-aos="fade-up" data-aos-delay="100"><div class="review-stars">★★★★★</div><p class="review-text">« Poisson parfaitement cuit, légumes croquants, présentation magnifique. Un régal. »</p><div class="review-author"><i class="fas fa-user-circle"></i> Yosr Gargouri</div></div>
+      <div class="review-card" data-aos="fade-up" data-aos-delay="200"><div class="review-stars">★★★★★</div><p class="review-text">« Cuisine fine, produits frais, service rapide et cadre détendu. Je recommande. »</p><div class="review-author"><i class="fas fa-user-circle"></i> M C Garden</div></div>
+      <div class="review-card" data-aos="fade-up" data-aos-delay="300"><div class="review-stars">★★★★★</div><p class="review-text">« Dîner très agréable, carte de saison bien faite. Exactement ce qu’on attend. »</p><div class="review-author"><i class="fas fa-user-circle"></i> Nicolas Billaud</div></div>
     </div>
-    <p style="text-align:center; margin-top:50px; opacity:0.7;" data-aos="fade-up">
-      Note moyenne 3.1 ★ sur 26 avis Google · <i class="fab fa-google"></i>
-    </p>
+    <p style="text-align:center; margin-top:50px; opacity:0.7;" data-aos="fade-up">Note moyenne 3.1 ★ sur 26 avis Google · <i class="fab fa-google"></i></p>
   </div>
 </section>
 
@@ -923,9 +832,7 @@
 <section id="reservation" class="reservation">
   <div class="container">
     <h2 class="section-title" data-aos="fade-up">Réservez votre table</h2>
-    <p style="font-size:1.2rem; margin-bottom:30px;" data-aos="fade-up" data-aos-delay="100">
-      Vivez l’expérience gastronomique 5 étoiles au cœur de Créteil.
-    </p>
+    <p style="font-size:1.2rem; margin-bottom:30px;" data-aos="fade-up" data-aos-delay="100">Vivez l’expérience gastronomique 5 étoiles au cœur de Créteil.</p>
     <div class="btn-group" data-aos="zoom-in" data-aos-delay="200">
       <a href="#" class="btn-primary"><i class="far fa-calendar-alt"></i> Réserver en ligne</a>
       <a href="tel:0188602000" class="btn-secondary"><i class="fas fa-phone-alt"></i> Appeler</a>
@@ -937,55 +844,25 @@
 <footer>
   <div class="container">
     <div class="footer-content">
-      <div class="footer-section">
-        <h4>Kitchen & Bar</h4>
-        <p>Courtyard by Marriott Paris Créteil<br>Gastronomie & Mixologie</p>
-      </div>
-      <div class="footer-section">
-        <h4>Liens rapides</h4>
-        <p><a href="#menu" style="color:inherit; text-decoration:none;">Carte</a> · <a href="#info" style="color:inherit;">Infos</a> · <a href="#avis" style="color:inherit;">Avis</a></p>
-      </div>
-      <div class="footer-section">
-        <h4>Suivez-nous</h4>
-        <div class="social-links">
-          <a href="#"><i class="fab fa-instagram"></i></a>
-          <a href="#"><i class="fab fa-facebook-f"></i></a>
-          <a href="#"><i class="fab fa-youtube"></i></a>
-          <a href="#"><i class="fab fa-x-twitter"></i></a>
-        </div>
-      </div>
+      <div class="footer-section"><h4>Kitchen & Bar</h4><p>Courtyard by Marriott Paris Créteil<br>Gastronomie & Mixologie</p></div>
+      <div class="footer-section"><h4>Liens rapides</h4><p><a href="#menu" style="color:inherit; text-decoration:none;">Carte</a> · <a href="#galerie" style="color:inherit;">Galerie</a> · <a href="#info" style="color:inherit;">Infos</a> · <a href="#avis" style="color:inherit;">Avis</a></p></div>
+      <div class="footer-section"><h4>Suivez-nous</h4><div class="social-links"><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-youtube"></i></a><a href="#"><i class="fab fa-x-twitter"></i></a></div></div>
     </div>
-    <div class="copyright">
-      © 2025 Kitchen & Bar – Tous droits réservés. Design Dubaï 5★
-    </div>
+    <div class="copyright">© 2025 Kitchen & Bar – Tous droits réservés. Design Dubaï 5★</div>
   </div>
 </footer>
 
 <!-- Scripts -->
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
-  // Initialisation AOS (animations)
-  AOS.init({
-    duration: 800,
-    once: true,
-    easing: 'ease-out-cubic'
-  });
+  AOS.init({ duration: 800, once: true, easing: 'ease-out-cubic' });
   
-  // Header effet scroll
   window.addEventListener('scroll', function() {
-    const header = document.getElementById('header');
-    if (window.scrollY > 50) {
-      header.classList.add('scrolled');
-    } else {
-      header.classList.remove('scrolled');
-    }
+    document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
   });
   
-  // Menu mobile (simple toggle console)
-  const mobileBtn = document.querySelector('.mobile-menu');
-  mobileBtn.addEventListener('click', function() {
+  document.querySelector('.mobile-menu').addEventListener('click', function() {
     alert('Menu mobile – Navigation simplifiée');
-    // Vous pouvez implémenter un menu overlay ici si besoin
   });
 </script>
 
