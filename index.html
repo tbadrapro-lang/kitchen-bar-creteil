@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>KITCHEN & BAR | Gastronomie Dubaï 5★ | Courtyard Marriott Paris Créteil</title>
   
-  <!-- Polices premium -->
+  <!-- Polices premium (identiques à Takahisa) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -13,7 +13,7 @@
   <!-- Font Awesome 6 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   
-  <!-- AOS animations -->
+  <!-- AOS animations (utilisé pour les effets Takahisa) -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   
   <!-- Favicon -->
@@ -28,8 +28,8 @@
       --charcoal: #1A1A1A;
       --cream: #F8F4E6;
       --burgundy: #3D1B1E;
-      --shadow-gold: 0 25px 50px -8px rgba(212, 175, 55, 0.25);
-      --transition: all 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      --shadow-gold: 0 30px 60px -15px rgba(212, 175, 55, 0.3);
+      --transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
     }
     
     * {
@@ -54,7 +54,33 @@
     h1, h2, h3, h4, h5, h6 {
       font-family: 'Cormorant Garamond', serif;
       font-weight: 400;
-      letter-spacing: 0.02em;
+      letter-spacing: 0.03em;
+    }
+    
+    /* ===== PRÉLOADER (effet Takahisa) ===== */
+    #preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--dark);
+      z-index: 99999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: opacity 0.8s ease, visibility 0.8s;
+    }
+    
+    .loader-logo {
+      font-size: 3rem;
+      color: var(--gold);
+      animation: pulse 1.5s infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { opacity: 0.3; transform: scale(0.98); }
+      50% { opacity: 1; transform: scale(1.02); }
     }
     
     /* ===== UTILITAIRES ===== */
@@ -65,39 +91,44 @@
     }
     
     section {
-      padding: 120px 0;
+      padding: 140px 0;
       position: relative;
     }
     
     .section-title {
-      font-size: clamp(2.8rem, 8vw, 4.5rem);
+      font-size: clamp(3rem, 8vw, 5rem);
       text-align: center;
       margin-bottom: 80px;
       position: relative;
       font-weight: 300;
       text-transform: uppercase;
-      letter-spacing: 6px;
+      letter-spacing: 8px;
     }
     
     .section-title::after {
       content: '';
       display: block;
-      width: 120px;
-      height: 3px;
-      background: linear-gradient(90deg, transparent, var(--gold), transparent);
-      margin: 25px auto 0;
+      width: 0;
+      height: 2px;
+      background: var(--gold);
+      margin: 20px auto 0;
+      transition: width 1.2s ease;
     }
     
-    /* ===== HEADER FIXE LUXE ===== */
+    .section-title.aos-animate::after {
+      width: 120px;
+    }
+    
+    /* ===== HEADER FIXE LUXE (style Takahisa) ===== */
     header {
       position: fixed;
       top: 0;
       width: 100%;
       z-index: 10000;
-      background: rgba(10, 10, 10, 0.92);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(212, 175, 55, 0.25);
+      background: rgba(10, 10, 10, 0.85);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.2);
       transition: var(--transition);
     }
     
@@ -110,13 +141,13 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 18px 0;
+      padding: 20px 0;
     }
     
     .logo {
-      font-size: 1.9rem;
+      font-size: 2rem;
       font-weight: 700;
-      letter-spacing: 5px;
+      letter-spacing: 6px;
       background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 80%);
       -webkit-background-clip: text;
       background-clip: text;
@@ -128,7 +159,7 @@
     .nav-links {
       display: flex;
       list-style: none;
-      gap: 48px;
+      gap: 50px;
       align-items: center;
     }
     
@@ -137,8 +168,8 @@
       text-decoration: none;
       font-weight: 500;
       text-transform: uppercase;
-      letter-spacing: 1.5px;
-      font-size: 0.85rem;
+      letter-spacing: 2px;
+      font-size: 0.8rem;
       position: relative;
       padding-bottom: 5px;
       transition: var(--transition);
@@ -148,7 +179,7 @@
       content: '';
       position: absolute;
       width: 0;
-      height: 2px;
+      height: 1px;
       bottom: 0;
       left: 0;
       background: var(--gold);
@@ -170,15 +201,15 @@
       cursor: pointer;
     }
     
-    /* ===== HERO CINÉMATIQUE ===== */
+    /* ===== HERO AVEC PARALLAXE (style Takahisa) ===== */
     .hero {
       height: 100vh;
-      min-height: 700px;
-      background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.7)),
-                  url('data:image/svg+xml,%3Csvg width="1920" height="1080" xmlns="http://www.w3.org/2000/svg"%3E%3Cdefs%3E%3ClinearGradient id="g" x1="0%25" y1="0%25" x2="100%25" y2="100%25"%3E%3Cstop offset="0%25" stop-color="%231a1a1a"/%3E%3Cstop offset="100%25" stop-color="%230a0a0a"/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill="url(%23g)" width="1920" height="1080"/%3E%3Ctext x="50%25" y="48%25" font-size="120" fill="%23D4AF37" text-anchor="middle" font-family="Georgia" opacity="0.15"%3E✦ KITCHEN %26 BAR ✦%3C/text%3E%3C/svg%3E');
+      min-height: 750px;
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)),
+                  url('data:image/svg+xml,%3Csvg width="1920" height="1080" xmlns="http://www.w3.org/2000/svg"%3E%3Cdefs%3E%3ClinearGradient id="g" x1="0%25" y1="0%25" x2="100%25" y2="100%25"%3E%3Cstop offset="0%25" stop-color="%231a1a1a"/%3E%3Cstop offset="100%25" stop-color="%230a0a0a"/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill="url(%23g)" width="1920" height="1080"/%3E%3Ctext x="50%25" y="48%25" font-size="120" fill="%23D4AF37" text-anchor="middle" font-family="Georgia" opacity="0.1"%3E✦ KITCHEN %26 BAR ✦%3C/text%3E%3C/svg%3E');
       background-size: cover;
       background-position: center;
-      background-attachment: fixed;
+      background-attachment: fixed; /* effet parallaxe */
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -194,31 +225,31 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: radial-gradient(circle at 30% 40%, rgba(212,175,55,0.08) 0%, transparent 50%);
-      animation: slowPulse 10s infinite alternate;
+      background: radial-gradient(circle at 30% 40%, rgba(212,175,55,0.1) 0%, transparent 60%);
+      animation: slowPulse 12s infinite alternate;
     }
     
     @keyframes slowPulse {
-      0% { opacity: 0.4; }
-      100% { opacity: 1; }
+      0% { opacity: 0.3; }
+      100% { opacity: 0.8; }
     }
     
     .hero h1 {
-      font-size: clamp(4.5rem, 12vw, 8rem);
-      font-weight: 400;
-      margin-bottom: 20px;
-      letter-spacing: 12px;
+      font-size: clamp(5rem, 12vw, 9rem);
+      font-weight: 300;
+      margin-bottom: 15px;
+      letter-spacing: 15px;
       text-transform: uppercase;
       position: relative;
       z-index: 2;
-      text-shadow: 0 0 30px rgba(0,0,0,0.7);
+      text-shadow: 0 0 40px rgba(0,0,0,0.8);
     }
     
     .hero-subtitle {
-      font-size: 1.4rem;
-      letter-spacing: 8px;
+      font-size: 1.3rem;
+      letter-spacing: 10px;
       text-transform: uppercase;
-      margin-bottom: 35px;
+      margin-bottom: 40px;
       opacity: 0.9;
       position: relative;
       z-index: 2;
@@ -229,8 +260,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 25px;
-      margin-bottom: 45px;
+      gap: 30px;
+      margin-bottom: 50px;
       position: relative;
       z-index: 2;
       flex-wrap: wrap;
@@ -238,30 +269,30 @@
     
     .stars {
       color: var(--gold);
-      font-size: 1.5rem;
-      letter-spacing: 5px;
+      font-size: 1.6rem;
+      letter-spacing: 6px;
     }
     
     .price-badge {
       background: var(--gold);
       color: var(--dark);
-      padding: 10px 28px;
+      padding: 12px 30px;
       border-radius: 50px;
       font-weight: 600;
       letter-spacing: 2px;
       font-size: 1rem;
-      box-shadow: 0 5px 15px rgba(212,175,55,0.3);
+      box-shadow: 0 5px 20px rgba(212,175,55,0.4);
     }
     
     .cta-hero {
-      padding: 18px 55px;
+      padding: 20px 60px;
       background: transparent;
-      border: 2px solid var(--gold);
+      border: 1.5px solid var(--gold);
       color: var(--gold);
       font-size: 1rem;
-      font-weight: 600;
+      font-weight: 500;
       text-transform: uppercase;
-      letter-spacing: 3px;
+      letter-spacing: 4px;
       cursor: pointer;
       transition: var(--transition);
       position: relative;
@@ -277,46 +308,54 @@
       box-shadow: var(--shadow-gold);
     }
     
-    /* ===== CARTE (MENU) ===== */
+    /* ===== CARTE (MENU) avec animations améliorées ===== */
     .menu-category {
-      margin-bottom: 100px;
+      margin-bottom: 120px;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    
+    .menu-category.aos-animate {
+      opacity: 1;
+      transform: translateY(0);
     }
     
     .category-header {
       display: flex;
       align-items: center;
-      gap: 20px;
-      margin-bottom: 50px;
+      gap: 25px;
+      margin-bottom: 60px;
       border-bottom: 1px solid rgba(212,175,55,0.3);
       padding-bottom: 20px;
     }
     
     .category-icon {
-      font-size: 2.8rem;
+      font-size: 3rem;
       color: var(--gold);
     }
     
     .category-title {
-      font-size: 2.4rem;
-      font-weight: 400;
-      letter-spacing: 3px;
+      font-size: 2.6rem;
+      font-weight: 300;
+      letter-spacing: 4px;
     }
     
     .menu-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-      gap: 40px;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 45px;
     }
     
     .menu-item {
-      background: var(--charcoal);
+      background: rgba(26,26,26,0.7);
       border: 1px solid rgba(212,175,55,0.15);
-      padding: 40px 30px;
-      border-radius: 12px;
+      padding: 45px 35px;
+      border-radius: 16px;
       transition: var(--transition);
       position: relative;
       overflow: hidden;
-      backdrop-filter: blur(5px);
+      backdrop-filter: blur(10px);
     }
     
     .menu-item::before {
@@ -325,15 +364,15 @@
       top: 0;
       left: 0;
       right: 0;
-      height: 4px;
+      height: 3px;
       background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
       transform: scaleX(0);
-      transition: transform 0.6s ease;
+      transition: transform 0.7s ease;
     }
     
     .menu-item:hover {
       border-color: var(--gold);
-      transform: translateY(-10px);
+      transform: translateY(-12px);
       box-shadow: var(--shadow-gold);
       background: #1f1f1f;
     }
@@ -344,9 +383,9 @@
     
     .item-name {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.9rem;
+      font-size: 2rem;
       font-weight: 400;
-      margin-bottom: 12px;
+      margin-bottom: 15px;
       color: var(--cream);
       letter-spacing: 1px;
     }
@@ -359,7 +398,7 @@
     }
     
     .item-price {
-      font-size: 1.7rem;
+      font-size: 1.9rem;
       font-weight: 600;
       color: var(--gold);
       float: right;
@@ -370,20 +409,20 @@
     .allergens {
       font-size: 0.75rem;
       color: rgba(248,244,230,0.5);
-      margin-top: 15px;
+      margin-top: 20px;
       font-style: italic;
       clear: both;
     }
     
-    /* ===== GALERIE PHOTOS ===== */
+    /* ===== GALERIE PHOTOS (style Takahisa) ===== */
     .gallery {
-      background: linear-gradient(145deg, #0f0f0f 0%, #151515 100%);
+      background: linear-gradient(145deg, #0c0c0c 0%, #151515 100%);
     }
     
     .gallery-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
+      gap: 25px;
     }
     
     .gallery-item {
@@ -394,7 +433,7 @@
       border: 1px solid rgba(212,175,55,0.2);
       transition: var(--transition);
       cursor: pointer;
-      background: linear-gradient(145deg, #1e1e1e, #2a2a2a);
+      background: #1e1e1e;
     }
     
     .gallery-item img {
@@ -402,109 +441,107 @@
       height: 100%;
       object-fit: cover;
       display: block;
-      transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      transition: transform 1.2s cubic-bezier(0.23, 1, 0.32, 1);
     }
     
     .gallery-item::after {
       content: attr(data-img);
       position: absolute;
-      bottom: 15px;
-      right: 20px;
+      bottom: 20px;
+      right: 25px;
       color: var(--gold);
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       font-weight: 600;
-      text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+      text-shadow: 0 2px 10px rgba(0,0,0,0.7);
       z-index: 2;
-      opacity: 0.8;
-      transition: var(--transition);
+      opacity: 0;
+      transition: opacity 0.5s ease;
     }
     
     .gallery-item:hover {
       border-color: var(--gold);
       box-shadow: var(--shadow-gold);
-      transform: scale(1.02);
     }
     
     .gallery-item:hover img {
-      transform: scale(1.08);
+      transform: scale(1.1);
     }
     
     .gallery-item:hover::after {
       opacity: 1;
-      transform: translateY(-3px);
     }
     
     /* ===== INFOS PRATIQUES ===== */
     .info-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 40px;
-      margin-top: 50px;
+      gap: 45px;
+      margin-top: 60px;
     }
     
     .info-card {
       text-align: center;
-      padding: 50px 30px;
+      padding: 55px 35px;
       border: 1px solid rgba(212,175,55,0.2);
-      border-radius: 16px;
+      border-radius: 20px;
       transition: var(--transition);
-      background: rgba(26,26,26,0.6);
+      background: rgba(26,26,26,0.5);
       backdrop-filter: blur(5px);
     }
     
     .info-card:hover {
       border-color: var(--gold);
       background: rgba(212,175,55,0.05);
-      transform: translateY(-8px);
+      transform: translateY(-10px);
       box-shadow: var(--shadow-gold);
     }
     
     .info-icon {
       font-size: 3.5rem;
       color: var(--gold);
-      margin-bottom: 25px;
+      margin-bottom: 30px;
     }
     
     .info-card h3 {
-      font-size: 1.8rem;
-      margin-bottom: 15px;
+      font-size: 2rem;
+      margin-bottom: 20px;
     }
     
     /* ===== AVIS ===== */
     .reviews-section {
-      background: linear-gradient(135deg, #0c0c0c 0%, #1a1a1a 100%);
+      background: linear-gradient(135deg, #0a0a0a 0%, #181818 100%);
     }
     
     .reviews-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 40px;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 45px;
     }
     
     .review-card {
-      background: var(--charcoal);
-      padding: 45px 35px;
-      border-left: 5px solid var(--gold);
-      position: relative;
-      border-radius: 8px;
+      background: rgba(26,26,26,0.8);
+      padding: 50px 40px;
+      border-left: 4px solid var(--gold);
+      border-radius: 12px;
       transition: var(--transition);
+      backdrop-filter: blur(10px);
     }
     
     .review-card:hover {
-      transform: translateY(-5px);
+      transform: translateY(-8px);
       box-shadow: var(--shadow-gold);
     }
     
     .review-stars {
       color: var(--gold);
-      font-size: 1.2rem;
-      margin-bottom: 25px;
+      font-size: 1.3rem;
+      margin-bottom: 30px;
     }
     
     .review-text {
       font-style: italic;
-      margin-bottom: 25px;
+      margin-bottom: 30px;
       line-height: 1.8;
       font-weight: 300;
     }
@@ -514,12 +551,12 @@
       opacity: 0.9;
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 15px;
     }
     
     /* ===== RÉSERVATION ===== */
     .reservation {
-      background: linear-gradient(145deg, var(--burgundy) 0%, #1e0e10 100%);
+      background: linear-gradient(145deg, var(--burgundy) 0%, #1a0c0e 100%);
       text-align: center;
       position: relative;
       overflow: hidden;
@@ -528,12 +565,12 @@
     .reservation::before {
       content: '';
       position: absolute;
-      top: -40%;
-      right: -20%;
+      top: -30%;
+      right: -15%;
       width: 100%;
       height: 200%;
-      background: radial-gradient(circle, rgba(212,175,55,0.12) 0%, transparent 70%);
-      animation: rotateSlow 25s infinite linear;
+      background: radial-gradient(circle, rgba(212,175,55,0.15) 0%, transparent 70%);
+      animation: rotateSlow 30s infinite linear;
     }
     
     @keyframes rotateSlow {
@@ -544,21 +581,21 @@
     .btn-group {
       display: flex;
       justify-content: center;
-      gap: 25px;
+      gap: 30px;
       flex-wrap: wrap;
-      margin-top: 40px;
+      margin-top: 50px;
       position: relative;
       z-index: 2;
     }
     
     .btn-primary {
       display: inline-block;
-      padding: 18px 50px;
+      padding: 20px 55px;
       background: var(--gold);
       color: var(--dark);
       font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 2.5px;
+      letter-spacing: 3px;
       text-decoration: none;
       border-radius: 50px;
       transition: var(--transition);
@@ -575,13 +612,13 @@
     
     .btn-secondary {
       display: inline-block;
-      padding: 18px 50px;
+      padding: 20px 55px;
       background: transparent;
       border: 2px solid var(--gold);
       color: var(--gold);
       font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 2.5px;
+      letter-spacing: 3px;
       text-decoration: none;
       border-radius: 50px;
       transition: var(--transition);
@@ -598,7 +635,7 @@
     footer {
       background: var(--dark);
       padding: 80px 0 40px;
-      border-top: 1px solid rgba(212,175,55,0.25);
+      border-top: 1px solid rgba(212,175,55,0.2);
       text-align: center;
     }
     
@@ -619,7 +656,7 @@
     .social-links {
       display: flex;
       justify-content: center;
-      gap: 30px;
+      gap: 35px;
       margin-top: 25px;
     }
     
@@ -648,11 +685,11 @@
     @media (max-width: 768px) {
       .nav-links { display: none; }
       .mobile-menu { display: block; }
-      .hero h1 { letter-spacing: 6px; }
-      .hero-subtitle { letter-spacing: 4px; font-size: 1rem; }
+      .hero h1 { letter-spacing: 8px; }
+      .hero-subtitle { letter-spacing: 5px; font-size: 1rem; }
       .menu-grid { grid-template-columns: 1fr; }
       .gallery-grid { grid-template-columns: 1fr; }
-      section { padding: 80px 0; }
+      section { padding: 100px 0; }
       .btn-group { flex-direction: column; align-items: center; }
     }
     
@@ -663,6 +700,13 @@
   </style>
 </head>
 <body>
+
+<!-- PRÉLOADER -->
+<div id="preloader">
+  <div class="loader-logo">
+    <i class="fas fa-utensils"></i> KITCHEN & BAR
+  </div>
+</div>
 
 <!-- HEADER -->
 <header id="header">
@@ -684,9 +728,9 @@
 <!-- HERO -->
 <section class="hero">
   <div class="hero-content">
-    <h1 data-aos="fade-down" data-aos-duration="1000">KITCHEN & BAR</h1>
-    <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="200">Courtyard by Marriott Paris Créteil</p>
-    <div class="hero-rating" data-aos="fade-up" data-aos-delay="400">
+    <h1 data-aos="fade-down" data-aos-duration="1200">KITCHEN & BAR</h1>
+    <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="300">Courtyard by Marriott Paris Créteil</p>
+    <div class="hero-rating" data-aos="fade-up" data-aos-delay="600">
       <div class="stars">
         <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
         <i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
@@ -694,7 +738,7 @@
       <span>3.1 • 26 avis</span>
       <div class="price-badge">20 – 30 €</div>
     </div>
-    <a href="#menu" class="cta-hero" data-aos="zoom-in" data-aos-delay="600">Découvrir la carte</a>
+    <a href="#menu" class="cta-hero" data-aos="zoom-in" data-aos-delay="900">Découvrir la carte</a>
   </div>
 </section>
 
@@ -703,7 +747,7 @@
   <h2 class="section-title" data-aos="fade-up">La Carte d'Exception</h2>
   
   <!-- Entrées -->
-  <div class="menu-category" data-aos="fade-up">
+  <div class="menu-category" data-aos="fade-up" data-aos-delay="100">
     <div class="category-header">
       <div class="category-icon"><i class="fas fa-utensils"></i></div>
       <h3 class="category-title">Pour Commencer</h3>
@@ -718,7 +762,7 @@
   </div>
   
   <!-- Plats -->
-  <div class="menu-category" data-aos="fade-up">
+  <div class="menu-category" data-aos="fade-up" data-aos-delay="200">
     <div class="category-header"><div class="category-icon"><i class="fas fa-drumstick-bite"></i></div><h3 class="category-title">Plats Signature</h3></div>
     <div class="menu-grid">
       <div class="menu-item"><h4 class="item-name">Pièce du Boucher</h4><p class="item-desc">Purée maison onctueuse, sauce chimichurri relevée, légumes de saison.</p><div class="item-price">24 €</div><div class="allergens">Lait</div></div>
@@ -729,7 +773,7 @@
   </div>
   
   <!-- Incontournables -->
-  <div class="menu-category" data-aos="fade-up">
+  <div class="menu-category" data-aos="fade-up" data-aos-delay="300">
     <div class="category-header"><div class="category-icon"><i class="fas fa-crown"></i></div><h3 class="category-title">Incontournables</h3></div>
     <div class="menu-grid">
       <div class="menu-item"><h4 class="item-name">Burger K&B</h4><p class="item-desc">Steak haché juteux, buns moelleux, oignons caramélisés, frites maison.</p><div class="item-price">21 €</div><div class="allergens">Gluten, Lait, Œufs</div></div>
@@ -741,7 +785,7 @@
   </div>
   
   <!-- Desserts -->
-  <div class="menu-category" data-aos="fade-up">
+  <div class="menu-category" data-aos="fade-up" data-aos-delay="400">
     <div class="category-header"><div class="category-icon"><i class="fas fa-cake"></i></div><h3 class="category-title">Douceurs Sucrées</h3></div>
     <div class="menu-grid">
       <div class="menu-item"><h4 class="item-name">Crème Caramel</h4><p class="item-desc">Caramel au beurre salé, vanille de Madagascar.</p><div class="item-price">9 €</div><div class="allergens">Lait, Œufs</div></div>
@@ -752,16 +796,15 @@
   </div>
 </section>
 
-<!-- GALERIE PHOTOS (IMAGES 1.png à 8.png) -->
+<!-- GALERIE PHOTOS (style Takahisa) -->
 <section id="galerie" class="gallery">
   <div class="container">
     <h2 class="section-title" data-aos="fade-up">Galerie Gourmande</h2>
-    <p style="text-align:center; margin-bottom:50px; opacity:0.8;" data-aos="fade-up">
+    <p style="text-align:center; margin-bottom:50px; opacity:0.8;" data-aos="fade-up" data-aos-delay="100">
       <i class="fas fa-camera"></i> Découvrez l'ambiance et nos créations
     </p>
     
     <div class="gallery-grid" data-aos="fade-up" data-aos-delay="200">
-      <!-- Adaptez les noms de fichiers selon ceux présents dans votre dépôt -->
       <div class="gallery-item" data-img="1/8">
         <img src="1.png" alt="Plat signature" onerror="this.style.display='none'">
       </div>
@@ -780,7 +823,6 @@
       <div class="gallery-item" data-img="6/8">
         <img src="unnamed.png" alt="Service gastronomique" onerror="this.style.display='none'">
       </div>
-      <!-- Pour avoir 8 images, vous pouvez dupliquer les existantes ou ajouter 6.png, 7.png -->
       <div class="gallery-item" data-img="7/8">
         <img src="unnamed.png" alt="Planche à partager" onerror="this.style.display='none'">
       </div>
@@ -846,12 +888,28 @@
 <!-- Scripts -->
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
-  AOS.init({ duration: 800, once: true, easing: 'ease-out-cubic' });
+  // Préloader
+  window.addEventListener('load', function() {
+    const preloader = document.getElementById('preloader');
+    preloader.style.opacity = '0';
+    preloader.style.visibility = 'hidden';
+  });
+
+  // Initialisation AOS avec configuration Takahisa
+  AOS.init({
+    duration: 1000,
+    once: true,
+    easing: 'ease-out-cubic',
+    offset: 120,
+    delay: 100,
+  });
   
+  // Header effet scroll
   window.addEventListener('scroll', function() {
     document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
   });
   
+  // Menu mobile (simple)
   document.querySelector('.mobile-menu').addEventListener('click', function() {
     alert('Menu mobile – Navigation simplifiée');
   });
